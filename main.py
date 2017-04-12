@@ -33,6 +33,7 @@ while True:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     mouth_rects = mouth_cascade.detectMultiScale(gray, 1.7, 11)
     cv2.rectangle(frame, (tempx,tempy), (tempx+int(2.5*tempw*ds_factor),tempy+int(2*temph*ds_factor)), (0,0,255), 2)
+    mouth = frame[tempy:tempy+int(2*temph*ds_factor), tempx:tempx+int(2.5*tempw*ds_factor)]
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(frame,'Place your mouth in RED BOX',(10,50), font, 1,(0,0,255),1)
             
@@ -71,7 +72,7 @@ while True:
     #         for v, (i0, j0, i1, j1) in regions:
     #             print v
             
-    
+    cv2.imshow('Mouth', mouth)
     cv2.imshow('Mouth Detector', frame)
 
     c = cv2.waitKey(1)
